@@ -9,11 +9,13 @@ Ext.define('MyApp.view.main.List', {
         'MyApp.store.Personnel',
         "Ext.toolbar.Paging"
     ],
+    
+    viewModel: 'list',
 
     title: 'Personnel',
 
-    store: {
-        type: 'personnel'
+    bind: {
+        store: '{personnel}'
     },
 
     columns: [
@@ -24,9 +26,9 @@ Ext.define('MyApp.view.main.List', {
     
     dockedItems: [{
         xtype: 'pagingtoolbar',
-        store: {
-            type: 'personnel'
-        }, 
+        bind: {
+            store: '{personnel}'
+        },
         dock: 'bottom',
         displayInfo: true
     }],
