@@ -12,6 +12,17 @@ Ext.define('MyApp.view.main.MainController', {
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },
+    
+    onPostSubmit: function(button) {
+        var form = button.up('form');
+        
+        if (form.isValid()) {
+            
+            var post = Ext.create('Post', form.getValues());
+
+            post.save();
+        }
+    },
 
     onConfirm: function (choice) {
         if (choice === 'yes') {

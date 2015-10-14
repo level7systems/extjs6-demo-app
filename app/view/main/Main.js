@@ -83,11 +83,30 @@ Ext.define('MyApp.view.main.Main', {
             xtype: 'mainlist'
         }]
     }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        title: 'New Post',
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
+        iconCls: 'fa-file-text-o',
+        xtype: 'form',
+        defaultType: 'textfield',
+        items: [
+            {
+                fieldLabel: 'Title',
+                name: 'title'
+            },{
+                xtype: 'textarea',
+                fieldLabel: 'Body',
+                name: 'body'
+            }
+        ],
+        buttons: [{
+            text: 'Submit',
+            listeners: {
+                click: 'onPostSubmit'
+            }
+        }]
     }, {
         title: 'Groups',
         iconCls: 'fa-users',
