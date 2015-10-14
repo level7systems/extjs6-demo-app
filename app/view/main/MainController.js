@@ -18,7 +18,7 @@ Ext.define('MyApp.view.main.MainController', {
         
         if (form.isValid()) {
             
-            var post = Ext.create('Post', form.getValues());
+            var post = Ext.create('MyApp.model.Post', form.getValues());
 
             post.save();
         }
