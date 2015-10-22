@@ -87,19 +87,7 @@ app.get('/:collection', function (req, res) {
         output.push(record);
     }
     
-    var next_page = parseInt(page) + 1;
-    var last_page = Math.floor(collection_size/limit);
-    var first_page = 1;
-    var prev_page = (page === 1) ? 1 : parseInt(page) - 1;
-    
-    var pager = '<http://localhost:'+port+'/'+req.params.collection+'?page='+next_page+'&limit='+limit+'>; rel="next",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+last_page+'&limit='+limit+'>; rel="last",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+first_page+'&limit='+limit+'>; rel="first",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+prev_page+'&limit='+limit+'>; rel="prev"';
-    
-    res.header('Link', pager);
-    
-    res.json(output);
+    res.json({ data: output, total: collection_size});
 });
 
 

@@ -24,7 +24,7 @@ Ext.define('MyApp.model.Personnel', {
         type: 'rest',
         url : 'http://127.0.0.1:3000/personnel',
         reader: {
-            rootProperty: 'personnel'
+            rootProperty: 'data'
         }
     }
 });
