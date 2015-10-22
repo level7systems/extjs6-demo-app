@@ -2,10 +2,11 @@
  * This view is an example list of people.
  */
 Ext.define('MyApp.view.main.List', {
-    extend: 'Ext.grid.Panel',
+    extend: 'MyApp.override.grid.SizeAwarePanel',
     xtype: 'mainlist',
-
+    
     requires: [
+        'MyApp.override.grid.SizeAwarePanel',
         'MyApp.store.Personnel',
         "Ext.toolbar.Paging"
     ],
