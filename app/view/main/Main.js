@@ -78,6 +78,13 @@ Ext.define('MyApp.view.main.Main', {
     items: [{
         title: 'Home',
         iconCls: 'fa-home',
+        items: [{
+            xtype: 'panel',
+            html: 'Hello World!'
+        }]
+    },{
+        title: 'Personnel',
+        iconCls: 'fa-user',
         layout: 'fit',
         // The following grid shares a store with the classic version's grid as well!
         items: [{
