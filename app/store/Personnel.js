@@ -5,12 +5,5 @@ Ext.define('MyApp.store.Personnel', {
     
     model: 'MyApp.model.Personnel',
     
-    autoLoad: true,
-    
-    listeners: {
-        load: function(store) {
-            console.log('######### load MyApp.store.Personnel');
-            console.log(store);
-        }
-    }
+    autoLoad: true
 });
