@@ -39,23 +39,23 @@ app.get('/:collection', function (req, res) {
         return false;
     }
     
-    var per_page = (req.query.page) ? req.query.per_page : 30;
+    var limit = (req.query.page) ? req.query.limit : 30;
     
-    if (!String(per_page).match(/^[0-9]+$/)) {
+    if (!String(limit).match(/^[0-9]+$/)) {
         res.status(404).json({
-            message: 'per_page parameter has to be a number',
+            message: 'limit parameter has to be a number',
         });
         return false;
     }
     
-    if (per_page > 100) {
+    if (limit > 100) {
         res.status(404).json({
-            message: 'per_page max is 100',
+            message: 'limit max is 100',
         });
         return false;
     }
     
-    if ((per_page * page) > collection_size) {
+    if ((limit * page) > collection_size) {
         res.status(404).json({
             message: 'pager out of range',
         });
@@ -73,9 +73,9 @@ app.get('/:collection', function (req, res) {
     
     var output = [];
     
-    var id = (page * per_page) - per_page + 1;
+    var id = (page * limit) - limit + 1;
     
-    for (id; id <= (page * per_page); id++) {
+    for (id; id <= (page * limit); id++) {
         var record = { id: id  };
         
         var _data = factory();
@@ -88,14 +88,14 @@ app.get('/:collection', function (req, res) {
     }
     
     var next_page = parseInt(page) + 1;
-    var last_page = Math.floor(collection_size/per_page);
+    var last_page = Math.floor(collection_size/limit);
     var first_page = 1;
     var prev_page = (page === 1) ? 1 : parseInt(page) - 1;
     
-    var pager = '<http://localhost:'+port+'/'+req.params.collection+'?page='+next_page+'&per_page='+per_page+'>; rel="next",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+last_page+'&per_page='+per_page+'>; rel="last",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+first_page+'&per_page='+per_page+'>; rel="first",';
-    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+prev_page+'&per_page='+per_page+'>; rel="prev"';
+    var pager = '<http://localhost:'+port+'/'+req.params.collection+'?page='+next_page+'&limit='+limit+'>; rel="next",';
+    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+last_page+'&limit='+limit+'>; rel="last",';
+    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+first_page+'&limit='+limit+'>; rel="first",';
+    pager+= '<http://localhost:'+port+'/'+req.params.collection+'?page='+prev_page+'&limit='+limit+'>; rel="prev"';
     
     res.header('Link', pager);
     
