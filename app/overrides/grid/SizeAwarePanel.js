@@ -16,6 +16,6 @@ Ext.define('MyApp.override.grid.SizeAwarePanel', {
         
         var store = this.getStore();
         store.setPageSize(pageSize);
-        store.reload();
+        store.loadPage(1);
     }
 });
