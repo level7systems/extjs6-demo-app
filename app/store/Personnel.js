@@ -3,7 +3,5 @@ Ext.define('MyApp.store.Personnel', {
 
     alias: 'store.personnel',
     
-    model: 'MyApp.model.Personnel',
-    
-    autoLoad: true
+    model: 'MyApp.model.Personnel'
 });
